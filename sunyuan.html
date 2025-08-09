@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+  const ua = navigator.userAgent;
+  const isWechat = /MicroMessenger/i.test(ua);
+  const isMobile = /Android|iPhone/i.test(ua);
+  
+  if(isWechat && isMobile) {
+    // 微信内特殊唤醒方案
+    window.location.href = "https://work.weixin.qq.com/wxwork/contact/addfriend?mobile=15080914951";
+  } 
+  else if(isMobile) {
+    // 普通手机浏览器
+    window.location.href = "weixin://dl/chat?15080914951";
+  }
+  else {
+    // 电脑端显示引导页
+    document.body.innerHTML = `
+      <div style="text-align:center;padding:20px">
+        <h2>添加孙媛微信</h2>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=15080914951" 
+             alt="微信二维码" width="200">
+        <p>请使用手机微信扫描二维码</p>
+        <p>或直接搜索号码：<strong>15080914951</strong></p>
+        <p><a href="weixin://dl/chat?15080914951">手机用户点此直接添加</a></p>
+      </div>
+    `;
+  }
+</script>
